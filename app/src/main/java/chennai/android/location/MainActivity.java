@@ -2,6 +2,7 @@ package chennai.android.location;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.test.mock.MockPackageManager;
@@ -54,8 +55,10 @@ public class MainActivity extends Activity {
                     double longitude = gps.getLongitude();
 
                     // \n is for new line
-                    Toast.makeText(getApplicationContext(), "Your MainActivity is - \nLat: "
-                            + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(),CheckInActivity.class);
+                    intent.putExtra("latitude",latitude);
+                    intent.putExtra("longitude",longitude);
+                    startActivity(intent);
                 }else{
                     // can't get activity_main
                     // GPS or Network is not enabled
